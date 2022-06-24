@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace Letter.Models
 {
-    public class Periodo
+    public class SemiFrase
     {
         public string Motivo { get; set; }
-        public List<Pentagrama> Pentagramas { get; set; }
+        public List<Celula> Impulsos { get; set; }
+        public int Compasso { get; set; }
+        public List<Celula> Repousos { get; set; }
     }
 }

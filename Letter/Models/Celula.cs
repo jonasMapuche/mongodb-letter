@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace Letter.Models
 {
-    public class Periodo
+    public class Celula
     {
-        public string Motivo { get; set; }
-        public List<Pentagrama> Pentagramas { get; set; }
+        public List<Acorde> Acordes { get; set; }
     }
 }
