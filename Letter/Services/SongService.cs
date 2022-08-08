@@ -11,7 +11,7 @@ namespace Letter.Services
     {
         public static string ConnectionName { get; set; }
         public static string DatabaseName { get; set; }
-        public static string CollectionName { get; set; }
+        public static string CollectionSong { get; set; }
         public static string JsonFile { get; set; }
 
         private readonly IMongoCollection<Musica> _songsCollection;
@@ -20,7 +20,7 @@ namespace Letter.Services
         {
             var mongoClient = new MongoClient(ConnectionName);
             var mongoDatabase = mongoClient.GetDatabase(DatabaseName);
-            IMongoCollection<Musica> ConfigurationValue = mongoDatabase.GetCollection<Musica>(CollectionName);
+            IMongoCollection<Musica> ConfigurationValue = mongoDatabase.GetCollection<Musica>(CollectionSong);
 
             _songsCollection = ConfigurationValue;
         }

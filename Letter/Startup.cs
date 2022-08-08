@@ -38,8 +38,13 @@ namespace Letter
 
             SongService.ConnectionName = Configuration.GetConnectionString("ConnectionName");
             SongService.DatabaseName = Configuration.GetConnectionString("DatabaseName");
-            SongService.CollectionName = Configuration.GetConnectionString("CollectionName");
+            SongService.CollectionSong = Configuration.GetConnectionString("CollectionSong");
             SongService.JsonFile = Configuration.GetConnectionString("JsonFile");
+
+            LetterService.ConnectionName = Configuration.GetConnectionString("ConnectionName");
+            LetterService.DatabaseName = Configuration.GetConnectionString("DatabaseName");
+            LetterService.CollectionLetter = Configuration.GetConnectionString("CollectionLetter");
+            LetterService.JsonFile = Configuration.GetConnectionString("JsonFile");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
