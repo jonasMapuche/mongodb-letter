@@ -22,20 +22,11 @@ namespace Letter.Controllers
 
             String substantivo = abstrato.expressao[0].oracao[0].sujeito.substantivo[0].ToString();
 
-            Abstrato texto = new Abstrato();
-            Expressao expressao = new Expressao();
-            Oracao oracao = new();
-            Sujeito sujeito = new();
-            Predicado predicado = new Predicado();
-
-            sujeito.pronome.Add(pronome);
-            sujeito.substantivo.Add(substantivo);
-            predicado.verbo.Add(verbo);
-            oracao.sujeito = sujeito;
-            oracao.predicado = predicado;
-            expressao.oracao.Add(oracao);
-            texto.nome = abstrato.nome;
-            texto.expressao.Add(expressao);
+            Sujeito sujeito = new Sujeito(substantivo, pronome, "");
+            Predicado predicado = new Predicado(verbo, "", "", "", "", "", "");
+            Oracao oracao = new Oracao(sujeito, predicado);
+            Expressao expressao = new Expressao(oracao);
+            Abstrato texto = new Abstrato(abstrato.nome, expressao);
 
             return texto;
         }

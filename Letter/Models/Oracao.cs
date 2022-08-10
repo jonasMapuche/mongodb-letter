@@ -9,5 +9,13 @@ namespace Letter.Models
     {
         public Sujeito sujeito { get; set; }
         public Predicado predicado { get; set; }
+
+        public Oracao() { }
+
+        public Oracao(Sujeito sujetio, Predicado predicado)
+        {
+            this.sujeito = sujeito;
+            this.predicado = predicado;
+        }
     }
 }

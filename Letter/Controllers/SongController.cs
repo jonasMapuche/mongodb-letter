@@ -16,6 +16,13 @@ namespace Letter.Controllers
     {
         public static readonly SongService _songsService = new SongService();
 
+        [HttpGet("")]
+        public async Task<ActionResult> Get()
+        {
+            await Task.Delay(500);
+            return Ok("Cosntruction of harmonic structures!");
+        }
+
         [HttpGet("noten")]
         public async Task<List<Musica>> GetAll()
         {

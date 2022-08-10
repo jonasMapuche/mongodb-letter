@@ -12,7 +12,16 @@ namespace Letter.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-        public string nome { get; set; }
+        public String nome { get; set; }
         public List<Expressao> expressao { get; set; }
+
+        public Abstrato() { }
+
+        public Abstrato(String nome, Expressao expressao)
+        {
+            this.nome = nome;
+            this.expressao = new List<Expressao>();
+            this.expressao.Add(expressao);
+        }
     }
 }
