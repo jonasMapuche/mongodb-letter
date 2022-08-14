@@ -12,7 +12,7 @@ namespace Letter.Models
 
         public Oracao() { }
 
-        public Oracao(Sujeito sujetio, Predicado predicado)
+        public Oracao(Sujeito sujeito, Predicado predicado)
         {
             this.sujeito = sujeito;
             this.predicado = predicado;
