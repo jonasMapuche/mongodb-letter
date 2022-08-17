@@ -14,21 +14,21 @@ namespace Letter.Controllers
 
         public async Task<ActionResult<Abstrato>> GetSentenceSimple(string lesson)
         {
-            Abstrato abstrato = await _lettersService.GetSentenceSimpleAsync(lesson);
+            Aula aula = await _lettersService.GetSentenceSimpleAsync(lesson);
 
-            String pronome = abstrato.expressao[0].oracao[0].sujeito.pronome[0].ToString();
+            String pronome = aula.conteudo.pronome[0].ToString();
 
-            String verbo = abstrato.expressao[0].oracao[0].predicado.verbo[0].ToString();
+            String verbo = aula.conteudo.verbo[0].ToString();
 
-            String substantivo = abstrato.expressao[0].oracao[0].sujeito.substantivo[0].ToString();
+            String substantivo = aula.conteudo.substantivo[0].ToString();
 
-            Sujeito sujeito = new Sujeito(substantivo, pronome, "");
-            Predicado predicado = new Predicado(verbo, "", "", "", "", "", "");
+            Sujeito sujeito = new Sujeito("", pronome, "");
+            Predicado predicado = new Predicado(verbo, "", "", "", "", "", "", substantivo, "", "");
             Oracao oracao = new Oracao(sujeito, predicado);
             Expressao expressao = new Expressao(oracao);
-            Abstrato texto = new Abstrato(abstrato.nome, expressao);
+            Abstrato frase = new Abstrato(aula.nome, expressao);
 
-            return texto;
+            return frase;
         }
     }
 }

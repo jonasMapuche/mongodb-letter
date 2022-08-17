@@ -20,7 +20,7 @@ namespace Letter.Models
 
         public Predicado() { }
 
-        public Predicado(String verbo, String preposicao, String adverbio, String adjetivo, String interjeicao, String numeral, String conjuncao, String substantivo, String artigo, Substantivo pronome)
+        public Predicado(String verbo, String preposicao, String adverbio, String adjetivo, String interjeicao, String numeral, String conjuncao, String substantivo, String artigo, String pronome)
         {
             this.verbo = new List<string>();
             this.preposicao = new List<string>();
@@ -39,9 +39,9 @@ namespace Letter.Models
             this.interjeicao.Add(interjeicao);
             this.numeral.Add(numeral);
             this.conjuncao.Add(conjuncao);
-            this.conjuncao.Add(substantivo);
-            this.conjuncao.Add(pronome);
-            this.conjuncao.Add(artigo);
+            this.substantivo.Add(substantivo);
+            this.pronome.Add(pronome);
+            this.artigo.Add(artigo);
         }
     }
 }

@@ -9,9 +9,6 @@ namespace Letter.Models
 {
     public class Abstrato
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
         public String nome { get; set; }
         public List<Expressao> expressao { get; set; }
 

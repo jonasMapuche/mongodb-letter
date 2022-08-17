@@ -14,6 +14,7 @@ namespace Letter.Controllers
     {
         public static readonly LetterService _lettersService = new LetterService();
         public static readonly Grammar _grammar = new Grammar();
+        public static readonly VersionService _version = new VersionService();
 
         [HttpGet("")]
         public async Task<ActionResult> Get()
@@ -23,34 +24,47 @@ namespace Letter.Controllers
         }
 
         [HttpGet("abstrato")]
-        public async Task<List<Abstrato>> GetAll()
+        public async Task<List<Aula>> GetAll()
         {
             return await _lettersService.GetAsync();
         }
 
         [HttpGet("{id:length(24)}")]
-        public async Task<ActionResult<Abstrato>> Get(string id)
+        public async Task<ActionResult<Aula>> Get(string id)
         {
-            var abstrato = await _lettersService.GetAsync(id);
-            if (abstrato is null)
+            var aula = await _lettersService.GetAsync(id);
+            if (aula is null)
                 return NotFound();
-            return abstrato;
+            return aula;
         }
 
-        [HttpGet("sentence/simple")]
-        public async Task<ActionResult<Abstrato>> GetSentenceSimple()
+        [HttpGet("sentence/simple/{id}")]
+        public async Task<ActionResult<Abstrato>> GetSentenceSimple(String id)
         {
-            var abstrato = await _grammar.GetSentenceSimple("lesson1");
+            var abstrato = await _grammar.GetSentenceSimple(id);
             if (abstrato is null)
                 return NotFound();
             return abstrato;
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Post(Abstrato abstrato)
+        public async Task<IActionResult> Post(Aula aula)
         {
-            await _lettersService.CreateAsync(abstrato);
-            return CreatedAtAction(nameof(Get), new { id = abstrato.Id }, abstrato);
+            await _lettersService.CreateAsync(aula);
+            return CreatedAtAction(nameof(Get), new { id = aula.Id }, aula);
+        }
+
+        [HttpGet("version")]
+        public async Task<GitUserUrl> GetVersion()
+        {
+            return await _version.GetVersionAsync();
+        }
+
+        [HttpGet("post")]
+        public async Task<ActionResult> PostVersion(Aula aula)
+        {
+            await _version.AddAulaAsync(aula);
+            return CreatedAtAction(nameof(Get), new { id = aula.Id }, aula);
         }
     }
 }
