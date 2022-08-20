@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Letter.Models
 {
-    public class Musica
+    public class Registro
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-        public List<Melodia> melodia { get; set; }
+        public float frequencia { get; set; }
+        public Nota nota { get; set; }
     }
 }

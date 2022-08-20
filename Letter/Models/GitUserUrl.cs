@@ -15,7 +15,7 @@ namespace Letter.Models
         public string url { get; set; }
         public string html_url { get; set; }
         public string followers_url { get; set; }
-        public string following_url { get; set; },
+        public string following_url { get; set; }
         public string gists_url { get; set; }
         public string starred_url { get; set; }
         public string subscriptions_url { get; set; }

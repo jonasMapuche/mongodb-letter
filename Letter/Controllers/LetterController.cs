@@ -61,10 +61,10 @@ namespace Letter.Controllers
         }
 
         [HttpGet("post")]
-        public async Task<ActionResult> PostVersion(Aula aula)
+        public async Task<ActionResult> PostVersion(String versao)
         {
-            await _version.AddAulaAsync(aula);
-            return CreatedAtAction(nameof(Get), new { id = aula.Id }, aula);
+            await _version.AddAulaAsync(versao);
+            return Ok("Version " + versao + "!");
         }
     }
 }

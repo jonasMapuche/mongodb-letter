@@ -14,28 +14,31 @@ namespace Letter.Services
         public static string CollectionSong { get; set; }
         public static string JsonFile { get; set; }
 
-        private readonly IMongoCollection<Musica> _songsCollection;
+        private readonly IMongoCollection<Registro> _songsCollection;
 
         public SongService()
         {
             var mongoClient = new MongoClient(ConnectionName);
             var mongoDatabase = mongoClient.GetDatabase(DatabaseName);
-            IMongoCollection<Musica> ConfigurationValue = mongoDatabase.GetCollection<Musica>(CollectionSong);
+            IMongoCollection<Registro> ConfigurationValue = mongoDatabase.GetCollection<Registro>(CollectionSong);
 
             _songsCollection = ConfigurationValue;
         }
 
-        public async Task<List<Musica>> GetAsync() =>
+        public async Task<List<Registro>> GetAsync() =>
             await _songsCollection.Find(_ => true).ToListAsync();
 
-        public async Task<Musica> GetAsync(string id) =>
+        public async Task<Registro> GetAsync(string id) =>
             await _songsCollection.Find(index => index.Id == id).FirstOrDefaultAsync();
 
-        public async Task CreateAsync(Musica musica) =>
-            await _songsCollection.InsertOneAsync(musica);
+//        public async Task<Registro> GetNotaAsync(string sigla) =>
+//            await _songsCollection.Find(index => index.nota.sigla == sigla).FirstOrDefaultAsync();
 
-        public async Task UpdateAsync(Musica musica) =>
-            await _songsCollection.ReplaceOneAsync(index => index.Id == musica.Id, musica);
+        public async Task CreateAsync(Registro registro) =>
+            await _songsCollection.InsertOneAsync(registro);
+
+        public async Task UpdateAsync(Registro registro) =>
+            await _songsCollection.ReplaceOneAsync(index => index.Id == registro.Id, registro);
 
         public async Task RemoveAsync(string id) =>
             await _songsCollection.DeleteOneAsync(index => index.Id == id);

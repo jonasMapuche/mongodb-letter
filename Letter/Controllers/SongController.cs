@@ -24,49 +24,54 @@ namespace Letter.Controllers
         }
 
         [HttpGet("noten")]
-        public async Task<List<Musica>> GetAll()
+        public async Task<List<Registro>> GetAll()
         {
             return await _songsService.GetAsync();
         }
 
         [HttpGet("{id:length(24)}")]
-        public async Task<ActionResult<Musica>> Get(string id)
+        public async Task<ActionResult<Registro>> Get(string id)
         {
-            var musica = await _songsService.GetAsync(id);
-            if (musica is null)
+            var registro = await _songsService.GetAsync(id);
+            if (registro is null)
                 return NotFound();
-            return musica;
+            return registro;
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Post(Musica musica)
+        public async Task<IActionResult> Post(Nota nota)
         {
-            await _songsService.CreateAsync(musica);
-            return CreatedAtAction(nameof(Get), new { id = musica.Id }, musica);
+            Registro registro = new Registro();
+            registro.frequencia = nota.frequencia;
+            registro.nota = nota;
+            await _songsService.CreateAsync(registro);
+            return CreatedAtAction(nameof(Get), new { id = registro.Id }, nota);
         }
 
+        /*
         [HttpPut("{id:length(24)}")]
-        public async Task<IActionResult> Update(Musica musica)
+        public async Task<IActionResult> Update(Nota nota)
         {
-            Musica melodiaLocal = await _songsService.GetAsync(musica.Id);
-            if (melodiaLocal is null)
+            Registro registro = await _songsService.GetNotaAsync(nota.nome);
+            if (registro is null)
             {
                 return NotFound();
             }
-            await _songsService.UpdateAsync(musica);
+            await _songsService.UpdateAsync(registro);
             return NoContent();
         }
-
+ 
         [HttpDelete("{id:length(24)}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string nota)
         {
-            Musica musica = await _songsService.GetAsync(id);
-            if (musica is null)
+            Registro registro = await _songsService.GetNotaAsync(nota);
+            if (registro is null)
             {
                 return NotFound();
             }
-            await _songsService.RemoveAsync(musica.Id);
+            await _songsService.RemoveAsync(registro.Id);
             return NoContent();
         }
+        */
     }
 }
