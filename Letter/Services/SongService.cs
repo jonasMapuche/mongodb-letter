@@ -31,8 +31,11 @@ namespace Letter.Services
         public async Task<Registro> GetAsync(string id) =>
             await _songsCollection.Find(index => index.Id == id).FirstOrDefaultAsync();
 
-//        public async Task<Registro> GetNotaAsync(string sigla) =>
-//            await _songsCollection.Find(index => index.nota.sigla == sigla).FirstOrDefaultAsync();
+        public async Task<Registro> GetSongAsync(string nota) =>
+            await _songsCollection.Find(index => index.nota.letra.Find(index2 => index2.nome == nota && index2.acidente == "").nome != "").FirstOrDefaultAsync();
+
+        public async Task<List<Registro>> GetSongNextAsync(float frequencia, int ordem) =>
+            await _songsCollection.Find(index => index.nota.frequencia > frequencia).Limit(ordem).ToListAsync();
 
         public async Task CreateAsync(Registro registro) =>
             await _songsCollection.InsertOneAsync(registro);
